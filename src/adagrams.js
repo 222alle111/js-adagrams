@@ -55,14 +55,24 @@ let SCORE_CHART = {}
   SCORE_CHART['Y'] = 4;
   SCORE_CHART['Z'] = 10;
 
+// export const buildTilePile = () => {
+//   let poolLetterTiles = []
+
+//   for (const [letter, frequency] of Object.entries(letterPool)) {
+//     for (let i = 0; i < frequency; i++) {
+//       poolLetterTiles.push(letter)
+//     };
+//   };
+//   return poolLetterTiles;
+// };
 
 export const drawLetters = () => {
   // Implement this method for wave 1
   let letterList = []
   let poolLetterTiles = []
 
-  for (const [letter, count] of Object.entries(letterPool)) {
-    for (let i = 0; i < count; i++) {
+  for (const [letter, frequency] of Object.entries(letterPool)) {
+    for (let i = 0; i < frequency; i++) {
       poolLetterTiles.push(letter)
     };
   };
@@ -85,16 +95,6 @@ export const drawLetters = () => {
 // return letterList;
 
 
-// export const buildTilePile = () => {
-//   let poolLetterTiles = []
-
-//   for (const [letter, count] of Object.entries(letterPool)) {
-//     for (let i = 0; i < count; i++) {
-//       poolLetterTiles.push(letter)
-//     };
-//   };
-// }
-
 export const usesAvailableLetters = (input, lettersInHand) => {
   // Implement this method for wave 2
   const clonedArray = [...lettersInHand];
@@ -116,7 +116,7 @@ export const scoreWord = (word) => {
   word = word.toUpperCase();
 
   for (const letter of word){
-    let letterPointValue = SCORE_CHART[letter];
+    const letterPointValue = SCORE_CHART[letter];
     score += letterPointValue;
   }
   if (word.length >= 7){
@@ -139,13 +139,13 @@ export const highestScoreFrom = (words) => {
     } else if (currentScore === highestScore) {
       if (highestScoreWord.length === word.length && highestScoreWord.length === 10){
         continue;
-      } else if (highestScore.length < 10 && word.length === 10) {
-          highestScore = word;
+      } if (highestScoreWord.length < 10 && word.length === 10) {
+        highestScoreWord = word;
         } else if (word.length < highestScoreWord.length && highestScoreWord.length < 10) {
           highestScoreWord = word;
         }
       }
     }
-  return { word: highestScoreWord, score: highestScore};
-  }
+  return { word: highestScoreWord, score: highestScore };
+  };
 
