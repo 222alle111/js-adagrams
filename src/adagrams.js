@@ -1,32 +1,31 @@
-let letterPool = {};
-  letterPool['A'] = 9;
-  letterPool['B'] = 2;
-  letterPool['C'] = 2;
-  letterPool['D'] = 4;
-  letterPool['E'] = 12;
-  letterPool['F'] = 2;
-  letterPool['G'] = 3;
-  letterPool['H'] = 2;
-  letterPool['I'] = 9;
-  letterPool['J'] = 1;
-  letterPool['K'] = 1;
-  letterPool['L'] = 4;
-  letterPool['M'] = 2;
-  letterPool['N'] = 6;
-  letterPool['O'] = 8;
-  letterPool['P'] = 2;
-  letterPool['Q'] = 1;
-  letterPool['R'] = 6;
-  letterPool['S'] = 4;
-  letterPool['T'] = 6;
-  letterPool['U'] = 4;
-  letterPool['V'] = 2;
-  letterPool['W'] = 2;
-  letterPool['X'] = 1;
-  letterPool['Y'] = 2;
-  letterPool['Z'] = 1;
+let LETTER_POOL = {};
+  LETTER_POOL['A'] = 9;
+  LETTER_POOL['B'] = 2;
+  LETTER_POOL['C'] = 2;
+  LETTER_POOL['D'] = 4;
+  LETTER_POOL['E'] = 12;
+  LETTER_POOL['F'] = 2;
+  LETTER_POOL['G'] = 3;
+  LETTER_POOL['H'] = 2;
+  LETTER_POOL['I'] = 9;
+  LETTER_POOL['J'] = 1;
+  LETTER_POOL['K'] = 1;
+  LETTER_POOL['L'] = 4;
+  LETTER_POOL['M'] = 2;
+  LETTER_POOL['N'] = 6;
+  LETTER_POOL['O'] = 8;
+  LETTER_POOL['P'] = 2;
+  LETTER_POOL['Q'] = 1;
+  LETTER_POOL['R'] = 6;
+  LETTER_POOL['S'] = 4;
+  LETTER_POOL['T'] = 6;
+  LETTER_POOL['U'] = 4;
+  LETTER_POOL['V'] = 2;
+  LETTER_POOL['W'] = 2;
+  LETTER_POOL['X'] = 1;
+  LETTER_POOL['Y'] = 2;
+  LETTER_POOL['Z'] = 1;
 
-// console.log(letterPool);
 let SCORE_CHART = {}
   SCORE_CHART['A'] = 1
   SCORE_CHART['B'] = 3;
@@ -55,27 +54,23 @@ let SCORE_CHART = {}
   SCORE_CHART['Y'] = 4;
   SCORE_CHART['Z'] = 10;
 
-// export const buildTilePile = () => {
-//   let poolLetterTiles = []
+//----Helper Function----//
+export const buildTilePile = () => {
+  let poolLetterTiles = [];
 
-//   for (const [letter, frequency] of Object.entries(letterPool)) {
-//     for (let i = 0; i < frequency; i++) {
-//       poolLetterTiles.push(letter)
-//     };
-//   };
-//   return poolLetterTiles;
-// };
+  for (const [letter, frequency] of Object.entries(LETTER_POOL)) {
+    for (let i = 0; i < frequency; i++) {
+      poolLetterTiles.push(letter);
+    }
+  }
+  return poolLetterTiles;
+};
 
 export const drawLetters = () => {
   // Implement this method for wave 1
-  let letterList = []
-  let poolLetterTiles = []
+  let letterList = [];
+  let poolLetterTiles = buildTilePile();
 
-  for (const [letter, frequency] of Object.entries(letterPool)) {
-    for (let i = 0; i < frequency; i++) {
-      poolLetterTiles.push(letter)
-    };
-  };
   while (letterList.length < 10) {
     let letterPosition = Math.floor(Math.random() * poolLetterTiles.length);
     let letter = poolLetterTiles[letterPosition];
@@ -84,16 +79,6 @@ export const drawLetters = () => {
   }
   return letterList;
 };
-
-// do {
-//   let letterPosition = Math.floor(Math.random() * poolLetterTiles.length);
-//   let lastPos = poolLetterTiles.length -1;
-//   [poolLetterTiles[lastPos], poolLetterTiles[letterPosition]] = [poolLetterTiles[letterPosition], poolLetterTiles[lastPos]]
-//   poolLetterTiles.pop()
-// }
-// while (letterList.length < 10)
-// return letterList;
-
 
 export const usesAvailableLetters = (input, lettersInHand) => {
   // Implement this method for wave 2
