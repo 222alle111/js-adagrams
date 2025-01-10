@@ -1,58 +1,60 @@
-let LETTER_POOL = {};
-  LETTER_POOL['A'] = 9;
-  LETTER_POOL['B'] = 2;
-  LETTER_POOL['C'] = 2;
-  LETTER_POOL['D'] = 4;
-  LETTER_POOL['E'] = 12;
-  LETTER_POOL['F'] = 2;
-  LETTER_POOL['G'] = 3;
-  LETTER_POOL['H'] = 2;
-  LETTER_POOL['I'] = 9;
-  LETTER_POOL['J'] = 1;
-  LETTER_POOL['K'] = 1;
-  LETTER_POOL['L'] = 4;
-  LETTER_POOL['M'] = 2;
-  LETTER_POOL['N'] = 6;
-  LETTER_POOL['O'] = 8;
-  LETTER_POOL['P'] = 2;
-  LETTER_POOL['Q'] = 1;
-  LETTER_POOL['R'] = 6;
-  LETTER_POOL['S'] = 4;
-  LETTER_POOL['T'] = 6;
-  LETTER_POOL['U'] = 4;
-  LETTER_POOL['V'] = 2;
-  LETTER_POOL['W'] = 2;
-  LETTER_POOL['X'] = 1;
-  LETTER_POOL['Y'] = 2;
-  LETTER_POOL['Z'] = 1;
+let LETTER_POOL = {
+  'A': 9, 
+  'B': 2, 
+  'C': 2, 
+  'D': 4, 
+  'E': 12, 
+  'F': 2, 
+  'G': 3, 
+  'H': 2, 
+  'I': 9, 
+  'J': 1, 
+  'K': 1, 
+  'L': 4, 
+  'M': 2, 
+  'N': 6, 
+  'O': 8, 
+  'P': 2, 
+  'Q': 1, 
+  'R': 6, 
+  'S': 4, 
+  'T': 6, 
+  'U': 4, 
+  'V': 2, 
+  'W': 2, 
+  'X': 1, 
+  'Y': 2, 
+  'Z': 1
+};
 
-let SCORE_CHART = {}
-  SCORE_CHART['A'] = 1
-  SCORE_CHART['B'] = 3;
-  SCORE_CHART['C'] = 3;
-  SCORE_CHART['D'] = 2;
-  SCORE_CHART['E'] = 1;
-  SCORE_CHART['F'] = 4;
-  SCORE_CHART['G'] = 2;
-  SCORE_CHART['H'] = 4;
-  SCORE_CHART['I'] = 1;
-  SCORE_CHART['J'] = 8;
-  SCORE_CHART['K'] = 5;
-  SCORE_CHART['L'] = 1;
-  SCORE_CHART['M'] = 3;
-  SCORE_CHART['N'] = 1;
-  SCORE_CHART['O'] = 1;
-  SCORE_CHART['P'] = 3;
-  SCORE_CHART['Q'] = 10;
-  SCORE_CHART['R'] = 1;
-  SCORE_CHART['S'] = 1;
-  SCORE_CHART['T'] = 1;
-  SCORE_CHART['U'] = 1;
-  SCORE_CHART['V'] = 4;
-  SCORE_CHART['W'] = 4;
-  SCORE_CHART['X'] = 8;
-  SCORE_CHART['Y'] = 4;
-  SCORE_CHART['Z'] = 10;
+let SCORE_CHART = {
+  'A': 1, 
+  'B': 3, 
+  'C': 3, 
+  'D': 2, 
+  'E': 1, 
+  'F': 4, 
+  'G': 2, 
+  'H': 4, 
+  'I': 1, 
+  'J': 8, 
+  'K': 5, 
+  'L': 1, 
+  'M': 3, 
+  'N': 1, 
+  'O': 1, 
+  'P': 3, 
+  'Q': 10, 
+  'R': 1, 
+  'S': 1, 
+  'T': 1, 
+  'U': 1, 
+  'V': 4, 
+  'W': 4, 
+  'X': 8, 
+  'Y': 4, 
+  'Z': 10
+};
 
 //----Helper Function----//
 export const buildTilePile = () => {
@@ -72,10 +74,13 @@ export const drawLetters = () => {
   let poolLetterTiles = buildTilePile();
 
   while (letterList.length < 10) {
-    let letterPosition = Math.floor(Math.random() * poolLetterTiles.length);
-    let letter = poolLetterTiles[letterPosition];
-    letterList.push(letter);
-    poolLetterTiles.splice(letterPosition, 1);
+    const letterPosition = Math.floor(Math.random() * poolLetterTiles.length);
+    
+    [poolLetterTiles[letterPosition], poolLetterTiles[poolLetterTiles.length - 1]] =
+      [poolLetterTiles[poolLetterTiles.length - 1], poolLetterTiles[letterPosition]];
+
+      const letter = poolLetterTiles.pop();
+      letterList.push(letter);
   }
   return letterList;
 };
@@ -134,3 +139,4 @@ export const highestScoreFrom = (words) => {
   return { word: highestScoreWord, score: highestScore };
   };
 
+  
